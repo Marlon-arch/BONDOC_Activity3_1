@@ -11,7 +11,9 @@ namespace BONDOC_Activity3_1.Controllers
             new Book { Id = 1, Title = "Kang Kong Chips Original", Author = "Josh Mojica", Price = 1000, PublicationYear = 2023 },
             new Book { Id = 2, Title = "Ginulat Ang Mondu", Author = "Kai Sotto", Price = 850, PublicationYear = 2050 }
         };
-
+        
+        private static int nextId = 3;
+        
         public IActionResult Index()
         {
             return View(books);
@@ -25,7 +27,7 @@ namespace BONDOC_Activity3_1.Controllers
         [HttpPost]
         public IActionResult Create(Book book)
         {
-            book.Id = books.Count + 1;
+            book.Id = nextId++;
             books.Add(book);
             return RedirectToAction("Index");
         }
